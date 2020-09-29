@@ -5,8 +5,15 @@ defmodule MeetGameWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", MeetGameWeb do
+  scope "/api" do
     pipe_through :api
+
+    forward "/graphiql", Absinthe.Plug.GraphiQL,
+      schema: MeetGameWeb.Schema
+
+    forward "/", Absinthe.Plug,
+      schema: MeetGameWeb.Schema
+
   end
 
   # Enables LiveDashboard only for development
