@@ -1,5 +1,10 @@
 use Mix.Config
 
+config :meet_game, MeetGameWeb.Endpoint,
+  server: true,
+  http: [port: {:system, "PORT"}],
+  url: [host: "https://meet-game-api.herokuapp.com", port: 443]
+
 # For production, don't forget to configure the url host
 # to something meaningful, Phoenix uses this information
 # when generating URLs.
