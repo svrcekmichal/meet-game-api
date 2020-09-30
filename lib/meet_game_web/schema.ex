@@ -8,6 +8,11 @@ defmodule MeetGameWeb.Schema do
 
   query do
 
+    @desc "Logged User"
+    field :logged_user, :user do
+      resolve &Resolvers.Core.logged_user/3
+    end
+
     @desc "Get all user"
     field :users, list_of(:user) do
       resolve &Resolvers.Core.list_users/3

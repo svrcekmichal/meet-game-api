@@ -5,6 +5,7 @@ defmodule MeetGameWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug MeetGameWeb.Plugs.SetUser
   end
 
   scope "/api" do

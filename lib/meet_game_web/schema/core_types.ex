@@ -3,8 +3,8 @@ defmodule MeetGameWeb.Schema.CoreTypes do
 
   @desc "Core.User"
   object :user do
-    field :id, :id
-    field :username, :string
+    field :id, non_null(:id)
+    field :username, non_null(:string)
 
     # field :inserted_at, :naive_datetime
   end
