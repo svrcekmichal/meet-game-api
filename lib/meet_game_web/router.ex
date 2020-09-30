@@ -1,12 +1,17 @@
 defmodule MeetGameWeb.Router do
   use MeetGameWeb, :router
 
+  alias MeetGameWeb.{ TopicController, UserController }
+
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   scope "/api" do
     pipe_through :api
+
+    resources "/users", UserController, except: [:new, :edit]
+    resources "/topics", TopicController, except: [:new, :edit]
 
     forward "/graphiql", Absinthe.Plug.GraphiQL,
       schema: MeetGameWeb.Schema
