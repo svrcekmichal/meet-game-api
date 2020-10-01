@@ -1,23 +1,16 @@
 defmodule MeetGameWeb.Schema do
   use Absinthe.Schema
 
+  import_types Absinthe.Type.Custom
   import_types MeetGameWeb.Schema.CoreTypes
   import_types MeetGameWeb.Schema.ForumTypes
 
-  alias MeetGameWeb.Resolvers
-
   query do
+    import_fields(:core_queries)
+  end
 
-    @desc "Logged User"
-    field :logged_user, :user do
-      resolve &Resolvers.Core.logged_user/3
-    end
-
-    @desc "Get all user"
-    field :users, list_of(:user) do
-      resolve &Resolvers.Core.list_users/3
-    end
-
+  mutation do
+    import_fields(:core_mutations)
   end
 
 end

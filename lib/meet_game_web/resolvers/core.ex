@@ -1,5 +1,17 @@
 defmodule MeetGameWeb.Resolvers.Core do
 
+  alias MeetGame.Core
+  alias MeetGameWeb.Resolvers.Helpers
+
+  def create_user(_parent, %{ username: username }, _resolution) do
+    case Core.create_user(%{ username: username }) do
+      {:ok, user} -> {:ok, %{ created_user: user }}
+      {:error, changeset} -> {:error, Helpers.extract_error_msg(changeset) }
+      _ -> {:error, "Something failed? :D"}
+    end
+
+  end
+
   def logged_user(_parent, _args, %{context: %{user: user}}) do
     {:ok, user}
   end
@@ -7,7 +19,7 @@ defmodule MeetGameWeb.Resolvers.Core do
 
 
   def list_users(_parent, _args, _resolution) do
-    {:ok, MeetGame.Core.list_users()}
+    {:ok, Core.list_users()}
   end
 
 end
