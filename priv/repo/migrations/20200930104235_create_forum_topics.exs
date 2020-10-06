@@ -7,6 +7,5 @@ defmodule MeetGame.Repo.Migrations.CreateForumTopics do
       add :author_id, references(:users), null: false
       timestamps()
     end
-
   end
 end

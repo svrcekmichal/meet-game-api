@@ -12,11 +12,10 @@ defmodule MeetGameWeb.Plugs.SetUser do
 
   defp build_context(conn) do
     with [token] <- get_req_header(conn, "authorization"),
-      user = Core.get_user!(token) do
-        %{ user: user }
-      else
-        _ -> %{}
-      end
+         user = Core.get_user!(token) do
+      %{user: user}
+    else
+      _ -> %{}
+    end
   end
-
 end

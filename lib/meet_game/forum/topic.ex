@@ -6,6 +6,7 @@ defmodule MeetGame.Forum.Topic do
 
   schema "forum_topics" do
     field :title, :string
+    field :description, :string
 
     belongs_to :author, User, foreign_key: :author_id
 
@@ -15,7 +16,7 @@ defmodule MeetGame.Forum.Topic do
   @doc false
   def changeset(topic, attrs) do
     topic
-    |> cast(attrs, [:title])
-    |> validate_required([:title])
+    |> cast(attrs, [:title, :description, :author_id])
+    |> validate_required([:title, :description, :author_id])
   end
 end

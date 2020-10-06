@@ -101,5 +101,4 @@ defmodule MeetGame.Forum do
   def change_topic(%Topic{} = topic, attrs \\ %{}) do
     Topic.changeset(topic, attrs)
   end
-
 end

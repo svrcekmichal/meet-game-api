@@ -1,7 +1,7 @@
 defmodule MeetGameWeb.Router do
   use MeetGameWeb, :router
 
-  alias MeetGameWeb.{ TopicController, UserController }
+  alias MeetGameWeb.{TopicController, UserController}
 
   pipeline :api do
     plug :accepts, ["json"]
@@ -14,12 +14,9 @@ defmodule MeetGameWeb.Router do
     resources "/users", UserController, except: [:new, :edit]
     resources "/topics", TopicController, except: [:new, :edit]
 
-    forward "/graphiql", Absinthe.Plug.GraphiQL,
-      schema: MeetGameWeb.Schema
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: MeetGameWeb.Schema
 
-    forward "/", Absinthe.Plug,
-      schema: MeetGameWeb.Schema
-
+    forward "/", Absinthe.Plug, schema: MeetGameWeb.Schema
   end
 
   # Enables LiveDashboard only for development

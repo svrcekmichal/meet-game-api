@@ -11,7 +11,6 @@ defmodule MeetGameWeb.TopicView do
   end
 
   def render("topic.json", %{topic: topic}) do
-    %{id: topic.id,
-      title: topic.title}
+    %{id: topic.id, title: topic.title}
   end
 end
