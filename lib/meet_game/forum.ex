@@ -27,6 +27,11 @@ defmodule MeetGame.Forum do
     |> where([a], a.author_id == ^author_id)
   end
 
+  def query_all_topics do
+    Topic
+    |> from
+  end
+
   @doc """
   Gets a single topic.
 

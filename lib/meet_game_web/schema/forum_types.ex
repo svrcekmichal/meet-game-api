@@ -1,12 +1,13 @@
 defmodule MeetGameWeb.Schema.ForumTypes do
-  use Absinthe.Schema.Notation
   alias MeetGameWeb.Resolvers
+  use Absinthe.Relay.Schema.Notation, :modern
+  use Absinthe.Schema.Notation
   use Ecto.Schema
 
   object :forum_queries do
     @desc "Get all forum topics"
-    field :topics, list_of(:topic) do
-      resolve(&Resolvers.Forum.list_topics/3)
+    connection field :all_topics_connection, node_type: :topic do
+      resolve(&Resolvers.Forum.all_topics_connection/3)
     end
   end
 

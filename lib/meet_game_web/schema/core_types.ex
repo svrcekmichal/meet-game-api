@@ -1,11 +1,6 @@
 defmodule MeetGameWeb.Schema.CoreTypes do
   use Absinthe.Schema.Notation
   use Absinthe.Relay.Schema.Notation, :modern
-  alias Absinthe.Relay.Connection
-
-  import Ecto.Query
-  alias MeetGame.Repo
-  alias MeetGame.Forum.Topic
   alias MeetGameWeb.Resolvers
 
   object :core_queries do
@@ -15,6 +10,7 @@ defmodule MeetGameWeb.Schema.CoreTypes do
     end
 
     @desc "Get all user"
+    # @TODO only for admins
     field :users, list_of(:user) do
       resolve(&Resolvers.Core.list_users/3)
     end
@@ -35,7 +31,7 @@ defmodule MeetGameWeb.Schema.CoreTypes do
     field :inserted_at, :naive_datetime
 
     connection field :topics_connection, node_type: :topic do
-      resolve(&Resolvers.Core.user_topics_connection/3)
+      resolve(&Resolvers.Forum.user_topics_connection/3)
     end
   end
 
