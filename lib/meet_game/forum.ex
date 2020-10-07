@@ -21,6 +21,12 @@ defmodule MeetGame.Forum do
     Repo.all(Topic)
   end
 
+  def query_user_topics(author_id) do
+    Topic
+    |> from
+    |> where([a], a.author_id == ^author_id)
+  end
+
   @doc """
   Gets a single topic.
 

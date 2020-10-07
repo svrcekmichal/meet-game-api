@@ -15,7 +15,7 @@ defmodule MeetGameWeb.Plugs.SetUser do
          user = Core.get_user!(token) do
       %{user: user}
     else
-      _ -> %{}
+      _ -> %{user: nil}
     end
   end
 end

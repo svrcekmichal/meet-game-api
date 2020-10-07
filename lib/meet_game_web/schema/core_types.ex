@@ -1,6 +1,11 @@
 defmodule MeetGameWeb.Schema.CoreTypes do
   use Absinthe.Schema.Notation
+  use Absinthe.Relay.Schema.Notation, :modern
+  alias Absinthe.Relay.Connection
 
+  import Ecto.Query
+  alias MeetGame.Repo
+  alias MeetGame.Forum.Topic
   alias MeetGameWeb.Resolvers
 
   object :core_queries do
@@ -28,6 +33,10 @@ defmodule MeetGameWeb.Schema.CoreTypes do
     field :id, non_null(:id)
     field :username, non_null(:string)
     field :inserted_at, :naive_datetime
+
+    connection field :topics_connection, node_type: :topic do
+      resolve(&Resolvers.Core.user_topics_connection/3)
+    end
   end
 
   @desc "Result of Mutation.createUser"

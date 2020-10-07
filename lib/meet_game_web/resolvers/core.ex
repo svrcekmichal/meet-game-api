@@ -1,5 +1,8 @@
 defmodule MeetGameWeb.Resolvers.Core do
+  alias Absinthe.Relay.Connection
   alias MeetGame.Core
+  alias MeetGame.Forum
+  alias MeetGame.Repo
   alias MeetGameWeb.Resolvers.Helpers
 
   def create_user(_parent, %{username: username}, _resolution) do
@@ -18,5 +21,10 @@ defmodule MeetGameWeb.Resolvers.Core do
 
   def list_users(_parent, _args, _resolution) do
     {:ok, Core.list_users()}
+  end
+
+  def user_topics_connection(%{id: id}, args, _resolution) do
+    Forum.query_user_topics(id)
+    |> Connection.from_query(&Repo.all/1, args)
   end
 end
