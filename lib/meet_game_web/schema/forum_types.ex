@@ -4,9 +4,11 @@ defmodule MeetGameWeb.Schema.ForumTypes do
   use Absinthe.Schema.Notation
   use Ecto.Schema
 
+  connection :all_topics, node_type: :topic
+
   object :forum_queries do
     @desc "Get all forum topics"
-    connection field :all_topics_connection, node_type: :topic do
+    connection field :all_topics_connection, node_type: :all_topics do
       resolve(&Resolvers.Forum.all_topics_connection/3)
     end
   end

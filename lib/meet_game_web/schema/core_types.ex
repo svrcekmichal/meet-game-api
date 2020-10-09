@@ -24,13 +24,15 @@ defmodule MeetGameWeb.Schema.CoreTypes do
     end
   end
 
+  connection :user_topics, node_type: :topic
+
   @desc "Core.User"
   object :user do
     field :id, non_null(:id)
     field :username, non_null(:string)
     field :inserted_at, :naive_datetime
 
-    connection field :topics_connection, node_type: :topic do
+    connection field :topics_connection, node_type: :user_topics do
       resolve(&Resolvers.Forum.user_topics_connection/3)
     end
   end

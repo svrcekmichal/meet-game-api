@@ -5,7 +5,6 @@ defmodule MeetGameWeb.Schema do
   import_types(Absinthe.Type.Custom)
   import_types(MeetGameWeb.Schema.CoreTypes)
   import_types(MeetGameWeb.Schema.ForumTypes)
-  connection(node_type: :topic)
 
   query do
     import_fields(:core_queries)
