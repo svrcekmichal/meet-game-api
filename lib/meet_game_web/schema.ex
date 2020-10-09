@@ -15,4 +15,8 @@ defmodule MeetGameWeb.Schema do
     import_fields(:core_mutations)
     import_fields(:forum_mutations)
   end
+
+  subscription do
+    import_fields(:forum_subscriptions)
+  end
 end

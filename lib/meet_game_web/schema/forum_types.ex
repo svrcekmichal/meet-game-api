@@ -22,6 +22,24 @@ defmodule MeetGameWeb.Schema.ForumTypes do
     end
   end
 
+  object :forum_subscriptions do
+    field :topic_created, :topic_created_subscribe do
+      config(fn _, _ ->
+        {:ok, topic: "topic:created"}
+      end)
+      trigger(:create_topic,
+        topic: fn _ ->
+          "topic:created"
+        end
+      )
+    end
+  end
+
+  object :topic_created_subscribe do
+    field :created_topic, non_null(:topic)
+  end
+
+
   @desc "Result of Mutation.createTopic"
   object :create_topic_result do
     field :created_topic, non_null(:topic)
