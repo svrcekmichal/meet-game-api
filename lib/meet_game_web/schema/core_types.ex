@@ -24,7 +24,7 @@ defmodule MeetGameWeb.Schema.CoreTypes do
     end
   end
 
-  connection :user_topics, node_type: :topic
+  connection(:user_topics, node_type: :topic)
 
   @desc "Core.User"
   object :user do

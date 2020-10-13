@@ -46,7 +46,10 @@ defmodule MeetGame.MixProject do
       {:absinthe, "~> 1.5.3"},
       {:absinthe_plug, "~> 1.5.0"},
       {:absinthe_relay, "~> 1.5.0"},
-      {:decimal, "~> 2.0", override: true}
+      {:decimal, "~> 2.0", override: true},
+      {:ex_machina, "~> 2.4.0", only: :test},
+      {:ex_spec, "~> 2.0.1", only: :test},
+      {:faker, "~> 0.15.0", only: :test}
     ]
   end
 

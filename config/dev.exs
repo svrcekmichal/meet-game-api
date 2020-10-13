@@ -1,4 +1,5 @@
 use Mix.Config
+import File
 
 # Configure your database
 config :meet_game, MeetGame.Repo,
@@ -56,4 +57,6 @@ config :phoenix, :stacktrace_depth, 20
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 
-import_config "dev.secrets.exs"
+if File.exists?("dev.secrets.exs") do
+  import_config "dev.secrets.exs"
+end

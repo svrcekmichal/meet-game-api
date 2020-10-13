@@ -4,7 +4,7 @@ defmodule MeetGameWeb.Schema.ForumTypes do
   use Absinthe.Schema.Notation
   use Ecto.Schema
 
-  connection :all_topics, node_type: :topic
+  connection(:all_topics, node_type: :topic)
 
   object :forum_queries do
     @desc "Get all forum topics"
@@ -27,6 +27,7 @@ defmodule MeetGameWeb.Schema.ForumTypes do
       config(fn _, _ ->
         {:ok, topic: "topic:created"}
       end)
+
       trigger(:create_topic,
         topic: fn _ ->
           "topic:created"
@@ -38,7 +39,6 @@ defmodule MeetGameWeb.Schema.ForumTypes do
   object :topic_created_subscribe do
     field :created_topic, non_null(:topic)
   end
-
 
   @desc "Result of Mutation.createTopic"
   object :create_topic_result do
